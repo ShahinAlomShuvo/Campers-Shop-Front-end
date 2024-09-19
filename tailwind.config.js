@@ -51,7 +51,10 @@ export default {
           5: "hsl(var(--chart-5))",
         },
       },
+      fontFamily: {
+        Jost: "'Jost', sans-serif",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate", "daisyui")],
+  plugins: [require("daisyui", "tailwindcss-animate")],
 };
