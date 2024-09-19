@@ -1,10 +1,15 @@
+import Hero from "@/components/home/Hero";
 import Container from "@/components/ui/Container";
 
 const Home = () => {
   return (
-    <Container>
-      <h2>Home</h2>
-    </Container>
+    <>
+      <Hero></Hero>
+
+      <Container>
+        <h1>Hello</h1>
+      </Container>
+    </>
   );
 };
 

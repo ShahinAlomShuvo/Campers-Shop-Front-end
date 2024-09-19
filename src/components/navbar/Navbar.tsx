@@ -19,7 +19,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-white text-[#000000] py-6 font-Jost">
+    <div className="bg-white text-[#000000] py-4 font-Jost">
       <div className="navbar container mx-auto">
         {/* nav start content  */}
         <div className="navbar-start">
