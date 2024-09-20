@@ -1,5 +1,5 @@
 import { Button } from "../ui/button";
-import ProductsCard from "../ui/ProductsCard";
+import BestSellingProductsCard from "../ui/BestSellingProductsCard";
 
 const BestSeller = () => {
   return (
@@ -11,14 +11,14 @@ const BestSeller = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
+        <BestSellingProductsCard />
+        <BestSellingProductsCard />
+        <BestSellingProductsCard />
+        <BestSellingProductsCard />
+        <BestSellingProductsCard />
+        <BestSellingProductsCard />
+        <BestSellingProductsCard />
+        <BestSellingProductsCard />
       </div>
       <div className="text-center">
         <Button className="btn  bg-[#c19d60] outline-none border-none mt-8 font-semibold px-8">
