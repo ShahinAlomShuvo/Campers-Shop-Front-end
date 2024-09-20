@@ -12,7 +12,7 @@ const Features = () => {
           ensuring you're ready for any adventure with confidence and style.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-col lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <FeaturesCard></FeaturesCard>
         <FeaturesCard></FeaturesCard>
         <FeaturesCard></FeaturesCard>

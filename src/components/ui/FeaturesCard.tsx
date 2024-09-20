@@ -1,7 +1,7 @@
 import features1 from "../../assets/images/feature.webp";
-import fetures2 from "../../assets/images/feature2.webp";
-import fetures3 from "../../assets/images/feature3.webp";
-import fetures4 from "../../assets/images/features4.webp";
+// import fetures2 from "../../assets/images/feature2.webp";
+// import fetures3 from "../../assets/images/feature3.webp";
+// import fetures4 from "../../assets/images/features4.webp";
 import { Button } from "./button";
 
 const FeaturesCard = () => {
