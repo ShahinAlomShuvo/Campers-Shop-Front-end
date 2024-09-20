@@ -4,6 +4,7 @@ import Experience from "@/components/home/Experience";
 import Features from "@/components/home/Features";
 import Hero from "@/components/home/Hero";
 import Service from "@/components/home/Service";
+import VideoBlogs from "@/components/home/VideoBlogs";
 import Container from "@/components/ui/Container";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
         <Experience />
         <Category />
         <Features />
+        <VideoBlogs />
       </Container>
     </>
   );
