@@ -1,7 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.webp";
 import HeartSvg from "../ui/HeartSvg";
-import CartSvg from "../ui/CartSvg";
 
 const Navbar = () => {
   const navLinks = (
@@ -11,6 +10,9 @@ const Navbar = () => {
       </li>
       <li className="font-bold relative border-b lg:border-b-2 lg:border-transparent hover:border-[#f56e29] hover:text-[#f56e29] transition duration-500 ">
         <NavLink to={"/products"}>Products</NavLink>
+      </li>
+      <li className="font-bold relative border-b lg:border-b-2 lg:border-transparent hover:border-[#f56e29] hover:text-[#f56e29] transition duration-500 ">
+        <NavLink to={"/products-management"}>Product Management</NavLink>
       </li>
       <li className="font-bold relative border-b lg:border-b-2 lg:border-transparent hover:border-[#f56e29] hover:text-[#f56e29] transition duration-500 ">
         <NavLink to={"/contact"}>Contact</NavLink>
