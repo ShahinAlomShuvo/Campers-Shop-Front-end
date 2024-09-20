@@ -3,6 +3,7 @@ import Category from "@/components/home/Category";
 import Experience from "@/components/home/Experience";
 import Features from "@/components/home/Features";
 import Hero from "@/components/home/Hero";
+import InstagramShop from "@/components/home/InstagramShop";
 import Service from "@/components/home/Service";
 import VideoBlogs from "@/components/home/VideoBlogs";
 import Container from "@/components/ui/Container";
@@ -19,6 +20,7 @@ const Home = () => {
         <Category />
         <Features />
         <VideoBlogs />
+        <InstagramShop />
       </Container>
     </>
   );
