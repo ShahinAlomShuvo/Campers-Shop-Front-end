@@ -13,7 +13,7 @@ const ProductsCard = () => {
         <h2 className="card-title">Shoes!</h2>
         <p>$75</p>
         <div className="card-actions justify-end">
-          <Link to={"/products"} className="btn btn-primary">
+          <Link to={"/products-details"} className="btn btn-primary">
             View Details
           </Link>
         </div>
