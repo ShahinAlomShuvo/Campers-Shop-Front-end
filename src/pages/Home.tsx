@@ -1,4 +1,5 @@
 import BestSeller from "@/components/home/BestSeller";
+import Category from "@/components/home/Category";
 import Experience from "@/components/home/Experience";
 import Hero from "@/components/home/Hero";
 import Service from "@/components/home/Service";
@@ -13,6 +14,7 @@ const Home = () => {
         <Service />
         <BestSeller />
         <Experience />
+        <Category />
       </Container>
     </>
   );
