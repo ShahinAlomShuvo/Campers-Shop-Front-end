@@ -32,7 +32,7 @@ const Hero = () => {
     <Swiper
       modules={[Pagination, Autoplay]}
       pagination={{ clickable: true }}
-      className="h-screen w-full"
+      className="h-[90vh] w-full"
       autoplay={{ delay: 5000, disableOnInteraction: false }}
       effect="fade"
       speed={800}

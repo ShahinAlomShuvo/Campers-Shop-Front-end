@@ -1,4 +1,5 @@
 import Hero from "@/components/home/Hero";
+import Service from "@/components/home/Service";
 import Container from "@/components/ui/Container";
 
 const Home = () => {
@@ -7,7 +8,7 @@ const Home = () => {
       <Hero></Hero>
 
       <Container>
-        <h1>Hello</h1>
+        <Service />
       </Container>
     </>
   );
