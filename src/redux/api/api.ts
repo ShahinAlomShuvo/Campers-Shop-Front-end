@@ -5,7 +5,6 @@ export const productApi = createApi({
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: (query) => {
-        console.log(query);
         const params = new URLSearchParams();
         if (query?.category) params.append("category", query.category);
         if (query?.price) params.append("price", query.price);
@@ -18,7 +17,15 @@ export const productApi = createApi({
         };
       },
     }),
+    getProductsById: builder.query({
+      query: (id) => {
+        return {
+          url: `/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productApi;
+export const { useGetProductsQuery, useGetProductsByIdQuery } = productApi;
