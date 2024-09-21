@@ -1,4 +1,5 @@
 import MainLayout from "@/components/layouts/MainLayout";
+import Cart from "@/pages/Cart";
 import Home from "@/pages/Home";
 import ProductDetail from "@/pages/ProductDetails";
 import ProductManagement from "@/pages/ProductManagement";
@@ -20,13 +21,17 @@ export const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "products-details",
+        path: "/products-details",
         element: <ProductDetail />,
       },
 
       {
         path: "products-management",
         element: <ProductManagement />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
