@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { useAppDispatch } from "@/redux/features/hooks";
 import {
   Select,
   SelectContent,
@@ -8,18 +8,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { getSortingValue } from "@/redux/features/product/productSlice";
 
 const Sorting = () => {
+  const dispatch = useAppDispatch();
+  const handleSorting = (value: string) => {
+    dispatch(getSortingValue(value));
+  };
   return (
-    <Select>
+    <Select onValueChange={handleSorting}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Default Sorting" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Default Sorting</SelectLabel>
-          <SelectItem value="low">Price Ascending</SelectItem>
-          <SelectItem value="high">Price Descending</SelectItem>
+          <SelectItem value="asc">Price Ascending</SelectItem>
+          <SelectItem value="desc">Price Descending</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import CategoryFilter from "./CategoryFIlter";
 import PriceFilter from "./PriceFilter";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Sorting from "./Sorting";
+import { useAppDispatch } from "@/redux/features/hooks";
+import {
+  clearAllFilters,
+  getSearchValue,
+} from "@/redux/features/product/productSlice";
 
 const ProductFiltering = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Function to clear all filters
-  const clearFilters = () => {
-    setSearchTerm("");
+  const dispatch = useAppDispatch();
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    dispatch(getSearchValue(searchTerm));
   };
 
-  const handleSearch = () => {
-    // Add your search logic here
+  // Function to clear all filters
+  const clearFilters = () => {
+    dispatch(clearAllFilters());
   };
+
   return (
     <div className="flex space-x-4 items-center justify-between p-10 border rounded shadow-lg my-14">
       {/* Category Filter */}

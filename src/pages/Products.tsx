@@ -20,20 +20,15 @@ type TProduct = {
 const Products = () => {
   const category = useAppSelector((state) => state.product.category);
   const price = useAppSelector((state) => state.product.price);
-  console.log(category);
+  const sorting = useAppSelector((state) => state.product.sorting);
+  const search = useAppSelector((state) => state.product.search);
 
   const query: Record<string, any> = {};
   query["category"] = category;
   query["price"] = price;
+  query["sorting"] = sorting;
+  query["search"] = search;
   const { data, error, isLoading } = useGetProductsQuery({ ...query });
-
-  if (isLoading) {
-    return <div>Loading products...</div>;
-  }
-
-  if (error) {
-    return <div>Error fetching products</div>;
-  }
 
   const products = data?.data || [];
   return (
@@ -42,11 +37,20 @@ const Products = () => {
       <Container>
         <ProductFiltering />
         <hr />
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 py-10">
-          {products.map((product: TProduct) => (
-            <ProductsCard key={product._id} {...product} />
-          ))}
-        </div>
+        {/* Conditional rendering starts here */}
+        {isLoading ? (
+          <div className="text-center py-32">Loading products...</div>
+        ) : error ? (
+          <div className="text-center py-32">Error fetching products</div>
+        ) : products.length === 0 ? (
+          <div className="text-center py-32">No products available</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 py-10">
+            {products.map((product: TProduct) => (
+              <ProductsCard key={product._id} {...product} />
+            ))}
+          </div>
+        )}
       </Container>
     </>
   );

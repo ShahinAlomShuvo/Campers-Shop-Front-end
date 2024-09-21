@@ -9,6 +9,8 @@ export const productApi = createApi({
         const params = new URLSearchParams();
         if (query?.category) params.append("category", query.category);
         if (query?.price) params.append("price", query.price);
+        if (query?.sorting) params.append("sorting", query.sorting);
+        if (query?.search) params.append("search", query.search);
         return {
           url: "/",
           method: "GET",
