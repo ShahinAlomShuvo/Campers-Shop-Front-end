@@ -6,17 +6,11 @@ import { Button } from "../ui/button";
 import Sorting from "./Sorting";
 
 const ProductFiltering = () => {
-  const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [price, setPrice] = useState("");
-  const [sort, setSort] = useState("");
 
   // Function to clear all filters
   const clearFilters = () => {
-    setCategory("");
     setSearchTerm("");
-    setPrice("");
-    setSort("");
   };
 
   const handleSearch = () => {
@@ -25,10 +19,10 @@ const ProductFiltering = () => {
   return (
     <div className="flex space-x-4 items-center justify-between p-10 border rounded shadow-lg my-14">
       {/* Category Filter */}
-      <CategoryFilter setCategory={setCategory} />
+      <CategoryFilter />
 
       {/* Price Filter */}
-      <PriceFilter setPrice={setPrice} />
+      <PriceFilter />
 
       {/* Search Filter */}
       <div>
@@ -45,7 +39,7 @@ const ProductFiltering = () => {
       </div>
 
       {/* Sorting */}
-      <Sorting setSort={setSort} />
+      <Sorting />
 
       {/* Clear Button */}
       <Button onClick={clearFilters} className=" bg-red-500 text-white">

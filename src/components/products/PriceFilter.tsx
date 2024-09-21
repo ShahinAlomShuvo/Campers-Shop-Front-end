@@ -8,13 +8,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { useAppDispatch } from "@/redux/features/hooks";
+import { getFilterPriceValue } from "@/redux/features/product/productSlice";
 
-type PriceFilterProps = {
-  setPrice: Dispatch<SetStateAction<string>>;
-};
-const PriceFilter = ({ setPrice }: PriceFilterProps) => {
+const PriceFilter = () => {
+  const dispatch = useAppDispatch();
+  const handleFilterPrice = (value: string) => {
+    dispatch(getFilterPriceValue(value));
+  };
   return (
-    <Select onValueChange={setPrice}>
+    <Select onValueChange={handleFilterPrice}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Price Filter" />
       </SelectTrigger>

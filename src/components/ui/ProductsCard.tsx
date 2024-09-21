@@ -1,17 +1,26 @@
 import { Link } from "react-router-dom";
 
-const ProductsCard = () => {
+type Props = {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  category: string;
+  rating: number;
+  description: string;
+  image: string;
+  stock: number;
+};
+
+const ProductsCard = ({ _id, name, price, image }: Props) => {
   return (
     <div className="card card-compact bg-base-100  shadow-xl">
       <figure>
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-          alt="Shoes"
-        />
+        <img src={image} alt={name} />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>$75</p>
+        <h2 className="card-title">{name}</h2>
+        <p>${price}</p>
         <div className="card-actions justify-end">
           <Link to={"/products-details"} className="btn btn-primary">
             View Details

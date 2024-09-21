@@ -12,10 +12,14 @@ type TProduct = {
 
 type TProductState = {
   product: TProduct[];
+  category: string;
+  price: number;
 };
 
 const initialState: TProductState = {
   product: [],
+  category: "",
+  price: 0,
 };
 
 export const productSlice = createSlice({
@@ -25,8 +29,16 @@ export const productSlice = createSlice({
     setProducts: (state, action) => {
       state.product = action.payload;
     },
+    getCategoryValue: (state, action) => {
+      state.category = action.payload;
+    },
+
+    getFilterPriceValue: (state, action) => {
+      state.price = action.payload;
+    },
   },
 });
 
-export const { setProducts } = productSlice.actions;
+export const { setProducts, getCategoryValue, getFilterPriceValue } =
+  productSlice.actions;
 export default productSlice.reducer;

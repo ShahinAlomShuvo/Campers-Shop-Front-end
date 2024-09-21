@@ -8,14 +8,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { useAppDispatch } from "@/redux/features/hooks";
+import { getCategoryValue } from "@/redux/features/product/productSlice";
 
-type CategoryFilterProps = {
-  setCategory: Dispatch<SetStateAction<string>>;
-};
+const CategoryFilter = () => {
+  const dispatch = useAppDispatch();
+  const handleCategoryChange = (value: string) => {
+    dispatch(getCategoryValue(value));
+  };
 
-const CategoryFilter = ({ setCategory }: CategoryFilterProps) => {
   return (
-    <Select onValueChange={setCategory}>
+    <Select onValueChange={handleCategoryChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a Category" />
       </SelectTrigger>

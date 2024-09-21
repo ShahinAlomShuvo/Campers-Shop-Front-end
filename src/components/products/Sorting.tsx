@@ -8,13 +8,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-type SortingProps = {
-  setSort: Dispatch<SetStateAction<string>>;
-};
 
-const Sorting = ({ setSort }: SortingProps) => {
+const Sorting = () => {
   return (
-    <Select onValueChange={setSort}>
+    <Select>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Default Sorting" />
       </SelectTrigger>
