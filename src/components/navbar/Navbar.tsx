@@ -15,7 +15,7 @@ const Navbar = () => {
         <NavLink to={"/products-management"}>Product Management</NavLink>
       </li>
       <li className="font-bold relative border-b lg:border-b-2 lg:border-transparent hover:border-[#f56e29] hover:text-[#f56e29] transition duration-500 ">
-        <NavLink to={"/contact"}>Contact</NavLink>
+        <NavLink to={"/about"}>About Us</NavLink>
       </li>
     </>
   );

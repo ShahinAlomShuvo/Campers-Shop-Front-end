@@ -1,4 +1,5 @@
 import MainLayout from "@/components/layouts/MainLayout";
+import About from "@/pages/About";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/CheckOut";
 import Home from "@/pages/Home";
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: "/checkout",
         element: <Checkout />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
     ],
   },

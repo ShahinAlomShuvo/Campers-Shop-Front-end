@@ -6,7 +6,7 @@ import ProductsCard from "@/components/ui/ProductsCard";
 const Products = () => {
   return (
     <>
-      <PagesBanner />
+      <PagesBanner currentPage="Products" />
       <Container>
         <ProductFiltering />
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">

@@ -1,4 +1,5 @@
 import InstagramShop from "@/components/home/InstagramShop";
+import Service from "@/components/home/Service";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
 import { useState } from "react";
@@ -65,8 +66,9 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <PagesBanner />
+      <PagesBanner currentPage="Product Details" />
       <Container>
+        <Service />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 items-center">
           {/* Product Image */}
           <div>
