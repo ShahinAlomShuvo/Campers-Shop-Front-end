@@ -1,4 +1,9 @@
 import { useState } from "react";
+import CategoryFilter from "./CategoryFIlter";
+import PriceFilter from "./PriceFilter";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import Sorting from "./Sorting";
 
 const ProductFiltering = () => {
   const [category, setCategory] = useState("");
@@ -18,63 +23,34 @@ const ProductFiltering = () => {
     // Add your search logic here
   };
   return (
-    <div className="flex space-x-4 items-center justify-between py-6">
+    <div className="flex space-x-4 items-center justify-between p-10 border rounded shadow-lg my-14">
       {/* Category Filter */}
-      <select
-        className="border p-2 rounded"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="">Categories</option>
-        <option value="category1">Category 1</option>
-        <option value="category2">Category 2</option>
-        {/* Add more categories */}
-      </select>
+      <CategoryFilter setCategory={setCategory} />
 
       {/* Price Filter */}
-      <select
-        className="border p-2 rounded"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      >
-        <option value="">Price Filter</option>
-        <option value="low">Low to High</option>
-        <option value="high">High to Low</option>
-      </select>
+      <PriceFilter setPrice={setPrice} />
 
-      <div className="flex space-x-4 items-center">
-        <input
-          type="text"
-          placeholder="Search products..."
-          className="border p-2 rounded w-full"
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button
-          onClick={handleSearch}
-          className="p-2 bg-blue-500 text-white rounded"
-        >
-          Search
-        </button>
+      {/* Search Filter */}
+      <div>
+        <form onSubmit={handleSearch} className="flex space-x-4 items-center">
+          <Input
+            onBlur={(e) => setSearchTerm(e.target.value)}
+            type="text"
+            placeholder="Search products"
+          />
+          <Button className="bg-[#c19d60]" type="submit">
+            Search
+          </Button>
+        </form>
       </div>
 
       {/* Sorting */}
-      <select
-        className="border p-2 rounded"
-        value={sort}
-        onChange={(e) => setSort(e.target.value)}
-      >
-        <option value="">Default sorting</option>
-        <option value="price-asc">Price Ascending</option>
-        <option value="price-desc">Price Descending</option>
-      </select>
+      <Sorting setSort={setSort} />
 
       {/* Clear Button */}
-      <button
-        onClick={clearFilters}
-        className="p-2 border rounded bg-red-500 text-white"
-      >
+      <Button onClick={clearFilters} className=" bg-red-500 text-white">
         Clear Filters
-      </button>
+      </Button>
     </div>
   );
 };

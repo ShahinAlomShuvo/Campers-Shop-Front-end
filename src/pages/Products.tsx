@@ -9,7 +9,8 @@ const Products = () => {
       <PagesBanner currentPage="Products" />
       <Container>
         <ProductFiltering />
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <hr />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 py-10">
           <ProductsCard />
           <ProductsCard />
           <ProductsCard />
