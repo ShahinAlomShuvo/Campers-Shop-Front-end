@@ -3,6 +3,7 @@ import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
 import React, { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -137,16 +138,18 @@ const Cart = () => {
               <p className="font-semibold">Total</p>
               <p className="text-lg font-bold">${totalPrice.toFixed(2)}</p>
             </div>
-            <button
-              className={`mt-6 w-full py-3 text-white font-bold rounded-lg ${
-                totalPrice > 0
-                  ? "bg-orange-600 hover:bg-orange-700"
-                  : "bg-gray-400 cursor-not-allowed"
-              }`}
-              disabled={totalPrice === 0}
-            >
-              Proceed to Checkout
-            </button>
+            <Link to={"/checkout"}>
+              <button
+                className={`mt-6 w-full py-3 text-white font-bold rounded-lg ${
+                  totalPrice > 0
+                    ? "bg-orange-600 hover:bg-orange-700"
+                    : "bg-gray-400 cursor-not-allowed"
+                }`}
+                disabled={totalPrice === 0}
+              >
+                Proceed to Checkout
+              </button>
+            </Link>
           </div>
         </div>
         <VideoBlogs />
