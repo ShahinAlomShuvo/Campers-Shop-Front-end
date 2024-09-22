@@ -2,6 +2,7 @@ import MainLayout from "@/components/layouts/MainLayout";
 import About from "@/pages/About";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/CheckOut";
+import Error from "@/pages/Error";
 import Home from "@/pages/Home";
 import ProductDetail from "@/pages/ProductDetails";
 import ProductManagement from "@/pages/ProductManagement";
@@ -12,6 +13,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
