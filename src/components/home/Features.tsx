@@ -1,6 +1,19 @@
+import { useGetProductsQuery } from "@/redux/api/api";
 import FeaturesCard from "../ui/FeaturesCard";
+type TProduct = {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  category: string;
+  ratings: number;
+  description: string;
+  image: string;
+};
 
 const Features = () => {
+  const { data, isLoading } = useGetProductsQuery(undefined);
+  const products = data?.data.slice(4, 8) || [];
   return (
     <div className="space-y-10 py-10">
       <div className="space-y-3 text-center">
@@ -12,12 +25,15 @@ const Features = () => {
           ensuring you're ready for any adventure with confidence and style.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <FeaturesCard></FeaturesCard>
-        <FeaturesCard></FeaturesCard>
-        <FeaturesCard></FeaturesCard>
-        <FeaturesCard></FeaturesCard>
-      </div>
+      {isLoading ? (
+        <div className="text-center py-32">Loading products...</div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {products.map((product: TProduct) => (
+            <FeaturesCard key={product._id} {...product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

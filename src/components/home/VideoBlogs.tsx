@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const VideoBlogs = () => {
   return (
     <section className="py-12 bg-gray-50">
@@ -25,9 +27,11 @@ const VideoBlogs = () => {
           <div className="absolute bottom-0 left-0 p-6">
             <h3 className="text-white text-2xl font-bold mb-2">Lowe Alpine</h3>
             <p className="text-white text-sm">Move Your World</p>
-            <button className="mt-4 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-300 transition duration-300">
-              Shop Now
-            </button>
+            <Link to={"/products"}>
+              <button className="mt-4 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-300 transition duration-300">
+                Shop Now
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -50,9 +54,11 @@ const VideoBlogs = () => {
             <p className="text-white text-sm">
               A trek through the rugged landscapes of Patagonia
             </p>
-            <button className="mt-4 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-300 transition duration-300">
-              Shop Now
-            </button>
+            <Link to={"/products"}>
+              <button className="mt-4 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-300 transition duration-300">
+                Shop Now
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -75,9 +81,11 @@ const VideoBlogs = () => {
             <p className="text-white text-sm">
               Discover the hidden gems of the Swiss Alps
             </p>
-            <button className="mt-4 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-300 transition duration-300">
-              Shop Now
-            </button>
+            <Link to={"/products"}>
+              <button className="mt-4 bg-white text-black font-semibold py-2 px-4 rounded hover:bg-gray-300 transition duration-300">
+                Shop Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
