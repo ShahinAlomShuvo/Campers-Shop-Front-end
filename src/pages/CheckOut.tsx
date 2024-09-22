@@ -1,35 +1,15 @@
+import { selectGrandTotalPrice } from "@/redux/features/cart/cartSlice";
+import { useAppSelector } from "@/redux/features/hooks";
+import { RootState } from "@/redux/store";
 import React, { useState } from "react";
-
-// Define the types for the cart items
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  stock: number;
-}
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Checkout: React.FC = () => {
-  // State for cart items
-  const [cart, setCart] = useState<CartItem[]>([
-    {
-      id: 1,
-      name: "Hunting Pack",
-      price: 179,
-      quantity: 1,
-      image: "/pack.png",
-      stock: 5,
-    },
-    {
-      id: 2,
-      name: "Carabiner Compass",
-      price: 275,
-      quantity: 1,
-      image: "/compass.png",
-      stock: 10,
-    },
-  ]);
+  const cartItems = useAppSelector((state) => state.cart.products);
+  const grandTotal = useSelector((state: RootState) =>
+    selectGrandTotalPrice(state)
+  );
 
   // State for user information
   const [email, setEmail] = useState<string>("");
@@ -39,20 +19,6 @@ const Checkout: React.FC = () => {
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [zipCode, setZipCode] = useState<string>("");
-
-  // Calculate the total price
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
-  // Handle order placement (deduct stock and redirect to success page)
-  const handlePlaceOrder = () => {
-    setCart(
-      cart.map((item) => ({ ...item, stock: item.stock - item.quantity }))
-    );
-    window.location.href = "/";
-  };
 
   return (
     <div className="container mx-auto py-8 border-t">
@@ -160,20 +126,19 @@ const Checkout: React.FC = () => {
             <label htmlFor="cod">Cash on Delivery</label>
           </div>
 
-          <button
-            className="w-full bg-orange-600 text-white py-3 rounded-lg font-bold hover:bg-orange-700"
-            onClick={handlePlaceOrder}
-          >
-            Place Order
-          </button>
+          <Link to="/success">
+            <button className="w-full bg-orange-600 text-white py-3 rounded-lg font-bold hover:bg-orange-700">
+              Place Order
+            </button>
+          </Link>
         </div>
 
         {/* Cart Summary */}
-        <div className="bg-white shadow-md rounded-lg p-6 border">
+        <div className="bg-white shadow-md rounded-lg p-6 border space-y-5">
           <h2 className="text-lg font-semibold mb-4">Your Cart</h2>
           <ul>
-            {cart.map((item) => (
-              <li key={item.id} className="flex justify-between mb-4">
+            {cartItems.map((item) => (
+              <li key={item._id} className="flex justify-between mb-4">
                 <div className="flex items-center gap-4">
                   <img
                     src={item.image}
@@ -182,13 +147,15 @@ const Checkout: React.FC = () => {
                   />
                   <span className="text-sm">{item.name}</span>
                 </div>
-                <span className="text-sm">${item.price.toFixed(2)}</span>
+                <span className="text-sm">
+                  ${(item.price * item.selectedQuantity).toFixed(2)}
+                </span>
               </li>
             ))}
           </ul>
           <div className="flex justify-between mt-4">
-            <p className="font-semibold">Subtotal ({cart.length} items)</p>
-            <p>${totalPrice.toFixed(2)}</p>
+            <p className="font-semibold">Subtotal ({cartItems.length} items)</p>
+            <p>${grandTotal.toFixed(2)}</p>
           </div>
           <div className="flex justify-between mt-2">
             <p className="font-semibold">Shipping</p>
@@ -196,7 +163,7 @@ const Checkout: React.FC = () => {
           </div>
           <div className="flex justify-between mt-4 text-lg font-bold">
             <p>Total</p>
-            <p>USD ${totalPrice.toFixed(2)}</p>
+            <p>USD ${grandTotal.toFixed(2)}</p>
           </div>
         </div>
       </div>
