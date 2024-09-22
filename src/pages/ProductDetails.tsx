@@ -37,8 +37,6 @@ const ProductDetail = () => {
   );
   const isOutOfStock = quantity >= product?.quantity;
 
-  console.log(product?.quantity, quantity);
-
   return (
     <div>
       <PagesBanner

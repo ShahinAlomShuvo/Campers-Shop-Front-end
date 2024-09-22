@@ -9,19 +9,21 @@ type TProduct = {
   category: string;
   image: string;
   ratings: number;
-  stock: number;
+  quantity: number;
 };
 
-type TCartItems = TProduct & { quantity: number };
+type TCartItems = TProduct & { selectedQuantity: number };
 
 type TCartState = {
-  product: TCartItems[];
+  products: TCartItems[];
   total: number;
+  grandTotal: number;
 };
 
 const initialState: TCartState = {
-  product: [],
+  products: [],
   total: 0,
+  grandTotal: 0,
 };
 
 const cartSlice = createSlice({
@@ -29,22 +31,22 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const existingProduct = state.product.find(
+      const existingProduct = state.products.find(
         (item) => item._id === action.payload._id
       );
 
       if (existingProduct) {
-        state.product = state.product.map((item) =>
+        state.products = state.products.map((item) =>
           item._id === existingProduct._id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, selectedQuantity: item.selectedQuantity + 1 }
             : item
         );
       } else {
-        state.product.push({ ...action.payload, quantity: 1 });
+        state.products.push({ ...action.payload, selectedQuantity: 1 });
       }
     },
     removeFromCart: (state, action) => {
-      state.product = state.product.filter(
+      state.products = state.products.filter(
         (item) => item._id !== action.payload
       );
     },
@@ -52,8 +54,14 @@ const cartSlice = createSlice({
 });
 
 export const selectItemQuantity = (state: RootState, productId: string) => {
-  const item = state.cart.product.find((product) => product._id === productId);
-  return item ? item.quantity : 0;
+  const item = state.cart.products.find((product) => product._id === productId);
+  return item ? item.selectedQuantity : 0;
+};
+
+export const selectTotalPrice = (state: RootState) => {
+  return state.cart.products.reduce((total, item) => {
+    return Number(total + item.price * item.selectedQuantity);
+  }, 0);
 };
 
 export const { addToCart, removeFromCart } = cartSlice.actions;

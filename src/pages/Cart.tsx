@@ -1,12 +1,15 @@
 import VideoBlogs from "@/components/home/VideoBlogs";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
+import { selectTotalPrice } from "@/redux/features/cart/cartSlice";
 import { useAppSelector } from "@/redux/features/hooks";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const cartItems = useAppSelector((state) => state.cart.product);
+  const cartItems = useAppSelector((state) => state.cart.products);
+  const totalPrice = useAppSelector((state) => selectTotalPrice(state));
+  console.log(totalPrice);
 
   return (
     <>
@@ -50,19 +53,17 @@ const Cart = () => {
                       <input
                         type="number"
                         className="border rounded w-16 text-center"
-                        value={product.quantity}
+                        value={product.selectedQuantity}
                         // onChange={(e) =>
                         //   updateQuantity(product._id, parseInt(e.target.value))
                         // }
                         min="1"
-                        max={product.stock}
+                        max={product.quantity}
                       />
                     </td>
 
                     {/* Total Price */}
-                    <td className="py-4 text-sm md:text-base">
-                      ${(product.price * product.quantity).toFixed(2)}
-                    </td>
+                    <td className="py-4 text-sm md:text-base">${totalPrice}</td>
 
                     {/* Remove Button */}
                     <td className="py-4">
