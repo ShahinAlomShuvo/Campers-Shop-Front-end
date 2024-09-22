@@ -9,6 +9,7 @@ import { RootState } from "@/redux/store";
 import { FaCheckCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -18,6 +19,11 @@ const ProductDetail = () => {
   const dispatch = useAppDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    Swal.fire({
+      title: "Success!",
+      text: "Product added to cart",
+      icon: "success",
+    });
   };
 
   const quantity = useSelector((state: RootState) =>

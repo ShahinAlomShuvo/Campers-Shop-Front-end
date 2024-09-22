@@ -7,13 +7,13 @@ const ContactInformation = () => {
         <div className="text-center">
           <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
           <p>
-            <strong>Phone:</strong> +1-234-567-890
+            <strong>Phone:</strong> +88 017-23981861
           </p>
           <p>
-            <strong>Email:</strong> info@yourshop.com
+            <strong>Email:</strong> info@campicshop.com
           </p>
           <p>
-            <strong>Address:</strong> 1234 Your Street, City, Country
+            <strong>Address:</strong> RDA Market, Rajshahi, Bangladesh
           </p>
         </div>
       </div>
