@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useDeleteProductMutation } from "@/redux/api/api";
 import EditProduct from "./EditProduct";
 import { FaTrashAlt } from "react-icons/fa";
