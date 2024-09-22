@@ -3,8 +3,12 @@ import Service from "@/components/home/Service";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
 import { useGetProductsByIdQuery } from "@/redux/api/api";
+import { addToCart, selectItemQuantity } from "@/redux/features/cart/cartSlice";
+import { useAppDispatch } from "@/redux/features/hooks";
+import { RootState } from "@/redux/store";
 import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 interface Product {
@@ -18,44 +22,22 @@ interface Product {
   image: string;
 }
 
-interface CartItem {
-  product: Product;
-  quantity: number;
-}
-
 const ProductDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetProductsByIdQuery(id);
-  const [cart, setCart] = useState<CartItem[]>([]);
 
   const product = data?.data;
-
-  // Helper function to add to cart
-  const addToCart = (product: Product) => {
-    setCart((prevCart) => {
-      const existingProduct = prevCart.find(
-        (item) => item.product.id === product.id
-      );
-      if (existingProduct) {
-        // If product exists in the cart, increase quantity up to stock limit
-        if (existingProduct.quantity < product.stock) {
-          return prevCart.map((item) =>
-            item.product.id === product.id
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          );
-        }
-        return prevCart; // No change if quantity reaches stock
-      } else {
-        // Add product to cart if not already present
-        return [...prevCart, { product, quantity: 1 }];
-      }
-    });
+  const dispatch = useAppDispatch();
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
   };
 
-  // Check if the product is in the cart and disable button if stock limit is reached
-  const cartItem = cart.find((item) => item.product.id === product.id);
-  const isOutOfStock = cartItem ? cartItem.quantity >= product.stock : false;
+  const quantity = useSelector((state: RootState) =>
+    selectItemQuantity(state, product?._id)
+  );
+  const isOutOfStock = quantity >= product?.quantity;
+
+  console.log(product?.quantity, quantity);
 
   return (
     <div>
@@ -109,7 +91,7 @@ const ProductDetail = () => {
                       }`}
                     >
                       {product.quantity > 0
-                        ? `In Stock: ${product.quantity}`
+                        ? `In Stock: ${product.quantity - quantity}`
                         : "Out of Stock"}
                     </p>
                   </li>
@@ -134,7 +116,7 @@ const ProductDetail = () => {
 
               {/* Add to Cart Button */}
               <button
-                onClick={() => addToCart(product)}
+                onClick={handleAddToCart}
                 disabled={isOutOfStock}
                 className={`px-6 py-2 rounded-md text-white font-semibold transition-colors
         ${

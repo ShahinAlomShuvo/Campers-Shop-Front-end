@@ -1,66 +1,16 @@
 import VideoBlogs from "@/components/home/VideoBlogs";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
-import React, { useState } from "react";
+import { useAppSelector } from "@/redux/features/hooks";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
-  image: string;
-  quantity: number;
-}
-
-const initialCart: Product[] = [
-  {
-    id: 1,
-    name: "Hunting Pack",
-    price: 179.0,
-    stock: 5,
-    image: "https://via.placeholder.com/80",
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: "Carabiner Compass",
-    price: 275.0,
-    stock: 3,
-    image: "https://via.placeholder.com/80",
-    quantity: 1,
-  },
-];
-
 const Cart = () => {
-  const [cart, setCart] = useState<Product[]>(initialCart);
-
-  // Update Quantity
-  const updateQuantity = (id: number, quantity: number) => {
-    setCart((prevCart) =>
-      prevCart.map((product) =>
-        product.id === id && quantity > 0 && quantity <= product.stock
-          ? { ...product, quantity }
-          : product
-      )
-    );
-  };
-
-  // Remove product
-  const removeProduct = (id: number) => {
-    setCart((prevCart) => prevCart.filter((product) => product.id !== id));
-  };
-
-  // Calculate total price
-  const totalPrice = cart.reduce(
-    (total, product) => total + product.price * product.quantity,
-    0
-  );
+  const cartItems = useAppSelector((state) => state.cart.product);
 
   return (
     <>
-      <PagesBanner />
+      <PagesBanner currentPage="Cart" />
       <Container>
         <div className="grid grid-cols-4 gap-4 py-10">
           {/* Cart Table */}
@@ -76,8 +26,8 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart.map((product) => (
-                  <tr key={product.id} className="border-b">
+                {cartItems.map((product) => (
+                  <tr key={product._id} className="border-b">
                     {/* Product Column */}
                     <td className="py-4 flex flex-col md:flex-row gap-2 items-center justify-start">
                       <img
@@ -101,9 +51,9 @@ const Cart = () => {
                         type="number"
                         className="border rounded w-16 text-center"
                         value={product.quantity}
-                        onChange={(e) =>
-                          updateQuantity(product.id, parseInt(e.target.value))
-                        }
+                        // onChange={(e) =>
+                        //   updateQuantity(product._id, parseInt(e.target.value))
+                        // }
                         min="1"
                         max={product.stock}
                       />
@@ -118,7 +68,7 @@ const Cart = () => {
                     <td className="py-4">
                       <button
                         className="text-red-600 hover:text-red-800"
-                        onClick={() => removeProduct(product.id)}
+                        // onClick={() => removeProduct(product.id)}
                       >
                         <FaTrashAlt />
                       </button>
@@ -136,10 +86,10 @@ const Cart = () => {
             </h2>
             <div className="flex justify-between">
               <p className="font-semibold">Total</p>
-              <p className="text-lg font-bold">${totalPrice.toFixed(2)}</p>
+              {/* <p className="text-lg font-bold">${totalPrice.toFixed(2)}</p> */}
             </div>
             <Link to={"/checkout"}>
-              <button
+              {/* <button
                 className={`mt-6 w-full py-3 text-white font-bold rounded-lg ${
                   totalPrice > 0
                     ? "bg-orange-600 hover:bg-orange-700"
@@ -148,7 +98,7 @@ const Cart = () => {
                 disabled={totalPrice === 0}
               >
                 Proceed to Checkout
-              </button>
+              </button> */}
             </Link>
           </div>
         </div>
