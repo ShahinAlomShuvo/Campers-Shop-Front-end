@@ -1,8 +1,8 @@
 import AddProduct from "@/components/productManagement/AddProduct";
+import ProductRow from "@/components/productManagement/ProductRow";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
 import { useGetProductsQuery } from "@/redux/api/api";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 type TProduct = {
   _id: string;
@@ -29,8 +29,6 @@ const ProductManagement = () => {
           <div className="p-6">
             <div className="flex justify-between">
               <h1 className="text-2xl font-bold mb-6">Manage Products</h1>
-
-              {/* Button to create new product */}
               <AddProduct />
             </div>
 
@@ -47,34 +45,7 @@ const ProductManagement = () => {
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
                 {products.map((product: TProduct) => (
-                  <tr
-                    key={product._id}
-                    className="border-b border-gray-200 hover:bg-gray-100"
-                  >
-                    <td className="py-3 px-6 text-left">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-12 h-12 rounded"
-                      />
-                    </td>
-                    <td className="py-3 px-6 text-left">{product.name}</td>
-                    <td className="py-3 px-6 text-left">
-                      ${product.price.toFixed(2)}
-                    </td>
-                    <td className="py-3 px-6 text-left capitalize">
-                      {product.category}
-                    </td>
-                    <td className="py-3 px-6 text-center space-x-6">
-                      <button className="text-blue-600 hover:text-blue-800 ">
-                        <FaEdit className="size-6" />
-                      </button>
-
-                      <button className="text-red-600 hover:text-red-800">
-                        <FaTrashAlt className="size-6" />
-                      </button>
-                    </td>
-                  </tr>
+                  <ProductRow key={product._id} product={product} />
                 ))}
               </tbody>
             </table>
