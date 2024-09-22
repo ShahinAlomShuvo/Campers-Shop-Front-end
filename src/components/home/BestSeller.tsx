@@ -1,5 +1,6 @@
 import { Button } from "../ui/button";
 import BestSellingProductsCard from "../ui/BestSellingProductsCard";
+import { Link } from "react-router-dom";
 
 const BestSeller = () => {
   return (
@@ -21,9 +22,11 @@ const BestSeller = () => {
         <BestSellingProductsCard />
       </div>
       <div className="text-center">
-        <Button className="btn  bg-[#c19d60] outline-none border-none mt-8 font-semibold px-8">
-          View All
-        </Button>
+        <Link to={"/products"}>
+          <Button className="btn  bg-[#c19d60] outline-none border-none mt-8 font-semibold px-8">
+            View All
+          </Button>
+        </Link>
       </div>
     </div>
   );

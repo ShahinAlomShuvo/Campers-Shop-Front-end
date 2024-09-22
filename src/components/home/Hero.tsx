@@ -7,6 +7,7 @@ import "swiper/css/autoplay";
 
 import sliderOne from "../../assets/images/slideshow.webp";
 import sliderTwo from "../../assets/images/slideshow2.webp";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const slides = [
@@ -51,9 +52,11 @@ const Hero = () => {
                 {slide.title}
               </p>
               <p className="text-sm text-white mb-4">{slide.description}</p>
-              <button className="bg-white text-black py-2 px-4 rounded hover:bg-[#ffc107]  transition">
-                {slide.buttonText}
-              </button>
+              <Link to={"/products"}>
+                <button className="bg-white text-black py-2 px-4 rounded hover:bg-[#ffc107]  transition">
+                  {slide.buttonText}
+                </button>
+              </Link>
             </div>
           </div>
         </SwiperSlide>

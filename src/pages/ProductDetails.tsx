@@ -6,21 +6,9 @@ import { useGetProductsByIdQuery } from "@/redux/api/api";
 import { addToCart, selectItemQuantity } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch } from "@/redux/features/hooks";
 import { RootState } from "@/redux/store";
-import { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
-  description: string;
-  category: string;
-  rating: number;
-  image: string;
-}
 
 const ProductDetail = () => {
   const { id } = useParams();

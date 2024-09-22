@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import CartSvg from "./CartSvg";
-import HeartSvg from "./HeartSvg";
 import SearchSvg from "./SearchSvg";
+import { useState } from "react";
+import HeartSvg from "./HeartSvg";
 
 const BestSellingProductsCard = () => {
+  const [wish, setWish] = useState(false);
+
   return (
     <div className="relative rounded-lg overflow-hidden group ">
       <img
@@ -14,7 +17,12 @@ const BestSellingProductsCard = () => {
 
       {/* Icons will fade in and slide in from the right */}
       <div className="absolute top-1/2 right-4 -translate-y-1/2 flex flex-col space-y-3 opacity-0 translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-in-out">
-        <button className="bg-white p-2 rounded-full shadow-md">
+        <button
+          onClick={() => setWish(!wish)}
+          className={`p-2 rounded-full shadow-md ${
+            wish ? "bg-red-500" : "bg-white"
+          }`}
+        >
           <HeartSvg />
         </button>
         <button className="bg-white p-2 rounded-full shadow-md">
