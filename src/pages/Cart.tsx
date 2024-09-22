@@ -1,15 +1,24 @@
 import VideoBlogs from "@/components/home/VideoBlogs";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
-import { selectTotalPrice } from "@/redux/features/cart/cartSlice";
-import { useAppSelector } from "@/redux/features/hooks";
+import {
+  changeProductQUantity,
+  removeFromCart,
+  selectGrandTotalPrice,
+} from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
+import { RootState } from "@/redux/store";
 import { FaTrashAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cartItems = useAppSelector((state) => state.cart.products);
-  const totalPrice = useAppSelector((state) => selectTotalPrice(state));
-  console.log(totalPrice);
+  const grandTotal = useSelector((state: RootState) =>
+    selectGrandTotalPrice(state)
+  );
+
+  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -52,26 +61,33 @@ const Cart = () => {
                     <td className="py-4">
                       <input
                         type="number"
-                        className="border rounded w-16 text-center"
                         value={product.selectedQuantity}
-                        // onChange={(e) =>
-                        //   updateQuantity(product._id, parseInt(e.target.value))
-                        // }
+                        onChange={(e) => {
+                          dispatch(
+                            changeProductQUantity({
+                              _id: product._id,
+                              selectedQuantity: parseInt(e.target.value),
+                            })
+                          );
+                        }}
+                        className="border rounded w-16 text-center"
                         min="1"
                         max={product.quantity}
                       />
                     </td>
 
                     {/* Total Price */}
-                    <td className="py-4 text-sm md:text-base">${totalPrice}</td>
+                    <td className="py-4 text-sm md:text-base">
+                      ${(product.price * product.selectedQuantity).toFixed(2)}
+                    </td>
 
                     {/* Remove Button */}
                     <td className="py-4">
                       <button
                         className="text-red-600 hover:text-red-800"
-                        // onClick={() => removeProduct(product.id)}
+                        onClick={() => dispatch(removeFromCart(product._id))}
                       >
-                        <FaTrashAlt />
+                        <FaTrashAlt size={20} />
                       </button>
                     </td>
                   </tr>
@@ -87,19 +103,20 @@ const Cart = () => {
             </h2>
             <div className="flex justify-between">
               <p className="font-semibold">Total</p>
-              {/* <p className="text-lg font-bold">${totalPrice.toFixed(2)}</p> */}
+              <p className="text-lg font-bold">${grandTotal.toFixed(2)}</p>
             </div>
             <Link to={"/checkout"}>
-              {/* <button
+              <button
                 className={`mt-6 w-full py-3 text-white font-bold rounded-lg ${
-                  totalPrice > 0
+                  grandTotal > 0
                     ? "bg-orange-600 hover:bg-orange-700"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
-                disabled={totalPrice === 0}
+                disabled={grandTotal === 0}
               >
                 Proceed to Checkout
-              </button> */}
+              </button>
+              ;
             </Link>
           </div>
         </div>

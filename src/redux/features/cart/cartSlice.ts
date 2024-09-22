@@ -1,5 +1,6 @@
 import { RootState } from "@/redux/store";
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react";
 
 type TProduct = {
   _id: string;
@@ -50,6 +51,17 @@ const cartSlice = createSlice({
         (item) => item._id !== action.payload
       );
     },
+
+    changeProductQUantity: (state, action) => {
+      state.products = state.products.map((item) =>
+        item._id === action.payload._id
+          ? {
+              ...item,
+              selectedQuantity: action.payload.selectedQuantity,
+            }
+          : item
+      );
+    },
   },
 });
 
@@ -58,12 +70,13 @@ export const selectItemQuantity = (state: RootState, productId: string) => {
   return item ? item.selectedQuantity : 0;
 };
 
-export const selectTotalPrice = (state: RootState) => {
+export const selectGrandTotalPrice = (state: RootState) => {
   return state.cart.products.reduce((total, item) => {
     return Number(total + item.price * item.selectedQuantity);
   }, 0);
 };
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, changeProductQUantity } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
