@@ -8,7 +8,7 @@ import { useAppDispatch } from "@/redux/features/hooks";
 import {
   clearAllFilters,
   getSearchValue,
-} from "@/redux/features/product/productSlice";
+} from "@/redux/features/filter/filterSlice";
 
 const ProductFiltering = () => {
   const [searchTerm, setSearchTerm] = useState("");

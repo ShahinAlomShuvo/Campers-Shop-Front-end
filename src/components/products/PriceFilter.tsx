@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { getFilterPriceValue } from "@/redux/features/filter/filterSlice";
 import {
   Select,
   SelectContent,
@@ -9,7 +9,6 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useAppDispatch } from "@/redux/features/hooks";
-import { getFilterPriceValue } from "@/redux/features/product/productSlice";
 
 const PriceFilter = () => {
   const dispatch = useAppDispatch();

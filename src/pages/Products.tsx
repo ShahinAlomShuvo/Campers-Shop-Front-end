@@ -12,16 +12,16 @@ type TProduct = {
   description: string;
   category: string;
   image: string;
-  rating: number;
+  ratings: number;
   quantity: number;
   stock: number;
 };
 
 const Products = () => {
-  const category = useAppSelector((state) => state.product.category);
-  const price = useAppSelector((state) => state.product.price);
-  const sorting = useAppSelector((state) => state.product.sorting);
-  const search = useAppSelector((state) => state.product.search);
+  const category = useAppSelector((state) => state.filter.category);
+  const price = useAppSelector((state) => state.filter.price);
+  const sorting = useAppSelector((state) => state.filter.sorting);
+  const search = useAppSelector((state) => state.filter.search);
 
   const query: Record<string, any> = {};
   query["category"] = category;

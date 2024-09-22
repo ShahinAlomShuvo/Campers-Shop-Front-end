@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import {
   Select,
   SelectContent,
@@ -9,8 +8,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useAppDispatch } from "@/redux/features/hooks";
-import { getCategoryValue } from "@/redux/features/product/productSlice";
-
+import { getCategoryValue } from "@/redux/features/filter/filterSlice";
 const CategoryFilter = () => {
   const dispatch = useAppDispatch();
   const handleCategoryChange = (value: string) => {

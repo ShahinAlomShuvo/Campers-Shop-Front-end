@@ -7,7 +7,7 @@ type Props = {
   price: number;
   quantity: number;
   category: string;
-  rating: number;
+  ratings: number;
   description: string;
   image: string;
   stock: number;

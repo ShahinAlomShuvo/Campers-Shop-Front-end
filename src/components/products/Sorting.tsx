@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { getSortingValue } from "@/redux/features/product/productSlice";
+import { getSortingValue } from "@/redux/features/filter/filterSlice";
 
 const Sorting = () => {
   const dispatch = useAppDispatch();
