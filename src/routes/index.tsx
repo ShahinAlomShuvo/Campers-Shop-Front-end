@@ -7,6 +7,7 @@ import Home from "@/pages/Home";
 import ProductDetail from "@/pages/ProductDetails";
 import ProductManagement from "@/pages/ProductManagement";
 import Products from "@/pages/Products";
+import Success from "@/pages/Success";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/success",
+        element: <Success />,
       },
     ],
   },
