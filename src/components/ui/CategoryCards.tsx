@@ -1,20 +1,26 @@
 import { Link } from "react-router-dom";
+type TProps = {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  category: string;
+  ratings: number;
+  description: string;
+  image: string;
+};
 
-const CategoryCards = () => {
+const CategoryCards = ({ _id, image, name, price }: TProps) => {
   return (
     <div className="flex items-center gap-6 border rounded">
-      <img
-        className="w-40"
-        src="https://campic-store-demo.myshopify.com/cdn/shop/products/product10.2.jpg?v=1689901761"
-        alt=""
-      />
+      <img className="w-40" src={image} alt={name} />
       <div className="space-y-2 mt-6 ">
-        <Link to={"/products"}>
+        <Link to={`/products/${_id}`}>
           <h3 className="text-lg font-semibold hover:text-[#f56e29] transition-all">
-            Neck Gaiter
+            {name}
           </h3>
         </Link>
-        <p className="text-orange-600 font-bold">$20.00</p>
+        <p className="text-orange-600 font-bold">${price}</p>
       </div>
     </div>
   );

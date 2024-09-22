@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ProductFiltering from "@/components/products/ProductFiltering";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
@@ -14,7 +15,6 @@ type TProduct = {
   image: string;
   ratings: number;
   quantity: number;
-  stock: number;
 };
 
 const Products = () => {

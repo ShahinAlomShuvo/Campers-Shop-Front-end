@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 const Experience = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 space-y-10">
-      <div className="flex items-center">
+      <div className="flex items-center justify-center">
         <div className=" space-y-6">
           <h2 className="text-6xl font-bold">Travel Experience</h2>
           <p className="font-semibold text-gray-500">Sale up to 10% off all</p>

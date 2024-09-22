@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "./button";
 
-type Props = {
+type TProps = {
   _id: string;
   name: string;
   price: number;
@@ -10,10 +10,9 @@ type Props = {
   ratings: number;
   description: string;
   image: string;
-  stock: number;
 };
 
-const ProductsCard = ({ _id, name, price, image }: Props) => {
+const ProductsCard = ({ _id, name, price, image }: TProps) => {
   return (
     <div className="card card-compact bg-base-100  shadow-xl">
       <figure>
