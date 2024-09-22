@@ -1,3 +1,4 @@
+import AddProduct from "@/components/productManagement/AddProduct";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
 import { useGetProductsQuery } from "@/redux/api/api";
@@ -30,9 +31,7 @@ const ProductManagement = () => {
               <h1 className="text-2xl font-bold mb-6">Manage Products</h1>
 
               {/* Button to create new product */}
-              <button className="mb-4 px-4 py-2 bg-green-500 text-white rounded-md">
-                Create New Product
-              </button>
+              <AddProduct />
             </div>
 
             {/* Product Table */}
