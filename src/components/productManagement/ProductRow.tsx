@@ -1,5 +1,6 @@
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { useDeleteProductMutation } from "@/redux/api/api";
 import EditProduct from "./EditProduct";
+import { FaTrashAlt } from "react-icons/fa";
 
 type TProduct = {
   _id: string;
@@ -17,6 +18,7 @@ type ProductRowProps = {
 };
 
 const ProductRow = ({ product }: ProductRowProps) => {
+  const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-100">
       <td className="py-3 px-6 text-left">
@@ -31,7 +33,10 @@ const ProductRow = ({ product }: ProductRowProps) => {
       <td className="py-3 px-6 text-left capitalize">{product.category}</td>
       <td className="py-3 px-6 text-center space-x-6">
         <EditProduct product={product} />
-        <button className="text-red-600 hover:text-red-800">
+        <button
+          onClick={() => deleteProduct(product._id)}
+          className="text-red-600 hover:text-red-800"
+        >
           <FaTrashAlt className="size-6" />
         </button>
       </td>
