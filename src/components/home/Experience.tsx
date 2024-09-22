@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 
 const Experience = () => {
@@ -7,9 +8,12 @@ const Experience = () => {
         <div className=" space-y-6">
           <h2 className="text-6xl font-bold">Travel Experience</h2>
           <p className="font-semibold text-gray-500">Sale up to 10% off all</p>
-          <Button className=" bg-[#c19d60] outline-none border-none mt-8 font-semibold px-8">
-            Shop Now
-          </Button>
+
+          <Link to={"/products"}>
+            <Button className=" bg-[#c19d60] outline-none border-none mt-8 font-semibold px-8">
+              Shop Now
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="w-full overflow-hidden">
