@@ -13,6 +13,7 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { useState } from "react";
 import { useAddProductMutation } from "@/redux/api/api";
+import Swal from "sweetalert2";
 
 // Product type and category enum
 type Category = "tents" | "shelter" | "camp-cooking" | "dining" | "backpacks";
@@ -66,6 +67,11 @@ const AddProduct = () => {
     });
 
     setOpen(false);
+    Swal.fire({
+      title: "Congratulations!",
+      text: "Product has been added!",
+      icon: "success",
+    });
   };
 
   return (
@@ -165,6 +171,7 @@ const AddProduct = () => {
                 placeholder="Product Ratings (0-5)"
                 min="0"
                 max="5"
+                step="0.1"
               />
             </div>
             {/* Image URL */}

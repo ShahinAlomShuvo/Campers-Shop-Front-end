@@ -9,7 +9,7 @@ type TProduct = {
   name: string;
   price: number;
   description: string;
-  category: string;
+  category: "tents" | "shelter" | "camp-cooking" | "dining" | "backpacks";
   image: string;
   ratings: number;
   quantity: number;
