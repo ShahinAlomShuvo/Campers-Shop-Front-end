@@ -5,9 +5,9 @@ import {
 } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { RootState } from "@/redux/store";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Checkout: React.FC = () => {
   const cartItems = useAppSelector((state) => state.cart.products);
@@ -28,7 +28,20 @@ const Checkout: React.FC = () => {
   const [updateProduct] = useUpdateProductMutation();
   const navigate = useNavigate();
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const useInfo = {
+      email,
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zipCode,
+    };
+    console.log(useInfo);
+
     try {
       for (const item of cartItems) {
         const updatedQuantity = item.quantity - item.selectedQuantity;
@@ -52,7 +65,10 @@ const Checkout: React.FC = () => {
     <div className="container mx-auto py-8 border-t">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* User Details Form */}
-        <div className="col-span-2 bg-white shadow-md border rounded-lg p-6">
+        <form
+          onSubmit={handleCheckout}
+          className="col-span-2 bg-white shadow-md border rounded-lg p-6"
+        >
           <h2 className="text-xl font-semibold mb-6">Contact</h2>
           <div className="mb-4">
             <label className="block text-sm font-medium">
@@ -63,6 +79,7 @@ const Checkout: React.FC = () => {
               className="border rounded-lg w-full p-2 mt-1"
               placeholder="Email or mobile phone number"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
             <div className="mt-2">
@@ -82,6 +99,7 @@ const Checkout: React.FC = () => {
                 className="border rounded-lg w-full p-2 mt-1"
                 placeholder="First Name"
                 value={firstName}
+                required
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
@@ -92,6 +110,7 @@ const Checkout: React.FC = () => {
                 className="border rounded-lg w-full p-2 mt-1"
                 placeholder="Last Name"
                 value={lastName}
+                required
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
@@ -104,6 +123,7 @@ const Checkout: React.FC = () => {
               className="border rounded-lg w-full p-2 mt-1"
               placeholder="Address"
               value={address}
+              required
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
@@ -116,6 +136,7 @@ const Checkout: React.FC = () => {
                 className="border rounded-lg w-full p-2 mt-1"
                 placeholder="City"
                 value={city}
+                required
                 onChange={(e) => setCity(e.target.value)}
               />
             </div>
@@ -126,6 +147,7 @@ const Checkout: React.FC = () => {
                 className="border rounded-lg w-full p-2 mt-1"
                 placeholder="State"
                 value={state}
+                required
                 onChange={(e) => setState(e.target.value)}
               />
             </div>
@@ -136,6 +158,7 @@ const Checkout: React.FC = () => {
                 className="border rounded-lg w-full p-2 mt-1"
                 placeholder="ZIP code"
                 value={zipCode}
+                required
                 onChange={(e) => setZipCode(e.target.value)}
               />
             </div>
@@ -150,17 +173,23 @@ const Checkout: React.FC = () => {
 
           <h2 className="text-xl font-semibold mb-6">Payment Method</h2>
           <div className="mb-6">
-            <input type="radio" id="cod" name="payment" className="mr-2" />
+            <input
+              required
+              type="radio"
+              id="cod"
+              name="payment"
+              className="mr-2"
+            />
             <label htmlFor="cod">Cash on Delivery</label>
           </div>
 
           <button
-            onClick={handleCheckout}
+            type="submit"
             className="w-full bg-orange-600 text-white py-3 rounded-lg font-bold hover:bg-orange-700"
           >
             Place Order
           </button>
-        </div>
+        </form>
 
         {/* Cart Summary */}
         <div className="bg-white shadow-md rounded-lg p-6 border space-y-5">
