@@ -1,23 +1,18 @@
 import VideoBlogs from "@/components/home/VideoBlogs";
 import Container from "@/components/ui/Container";
 import PagesBanner from "@/components/ui/PagesBanner";
-import {
-  changeProductQUantity,
-  removeFromCart,
-  selectGrandTotalPrice,
-} from "@/redux/features/cart/cartSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
+import { selectGrandTotalPrice } from "@/redux/features/cart/cartSlice";
+import { useAppSelector } from "@/redux/features/hooks";
 import { RootState } from "@/redux/store";
-import { FaTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CartItems from "@/components/cart/cartItems";
 
 const Cart = () => {
   const cartItems = useAppSelector((state) => state.cart.products);
   const grandTotal = useSelector((state: RootState) =>
     selectGrandTotalPrice(state)
   );
-  const dispatch = useAppDispatch();
 
   return (
     <>
@@ -41,63 +36,7 @@ const Cart = () => {
                   </thead>
                   <tbody>
                     {cartItems.map((product) => (
-                      <tr key={product._id} className="border-b">
-                        {/* Product Column */}
-                        <td className="py-4 flex flex-col md:flex-row gap-2 items-center justify-start">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-10 h-10 md:w-16 md:h-16 rounded"
-                          />
-                          <span className="text-sm md:text-base">
-                            {product.name}
-                          </span>
-                        </td>
-
-                        {/* Price */}
-                        <td className="py-4 text-sm md:text-base">
-                          ${product.price.toFixed(2)}
-                        </td>
-
-                        {/* Quantity Input */}
-                        <td className="py-4">
-                          <input
-                            type="number"
-                            value={product.selectedQuantity}
-                            onChange={(e) => {
-                              dispatch(
-                                changeProductQUantity({
-                                  _id: product._id,
-                                  selectedQuantity: parseInt(e.target.value),
-                                })
-                              );
-                            }}
-                            className="border rounded w-16 text-center"
-                            min="1"
-                            max={product.quantity}
-                          />
-                        </td>
-
-                        {/* Total Price */}
-                        <td className="py-4 text-sm md:text-base">
-                          $
-                          {(product.price * product.selectedQuantity).toFixed(
-                            2
-                          )}
-                        </td>
-
-                        {/* Remove Button */}
-                        <td className="py-4">
-                          <button
-                            className="text-red-600 hover:text-red-800"
-                            onClick={() =>
-                              dispatch(removeFromCart(product._id))
-                            }
-                          >
-                            <FaTrashAlt size={20} />
-                          </button>
-                        </td>
-                      </tr>
+                      <CartItems key={product._id} {...product} />
                     ))}
                   </tbody>
                 </table>
