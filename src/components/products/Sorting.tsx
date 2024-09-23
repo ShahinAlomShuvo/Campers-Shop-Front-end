@@ -1,4 +1,3 @@
-import { useAppDispatch } from "@/redux/features/hooks";
 import {
   Select,
   SelectContent,
@@ -8,15 +7,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { useAppDispatch } from "@/redux/features/hooks";
 import { getSortingValue } from "@/redux/features/filter/filterSlice";
 
-const Sorting = () => {
+type TSortingProps = {
+  selectedSorting: string;
+  setSelectedSorting: (value: string) => void;
+};
+
+const Sorting = ({ selectedSorting, setSelectedSorting }: TSortingProps) => {
   const dispatch = useAppDispatch();
+
   const handleSorting = (value: string) => {
+    setSelectedSorting(value);
     dispatch(getSortingValue(value));
   };
+
   return (
-    <Select onValueChange={handleSorting}>
+    <Select value={selectedSorting} onValueChange={handleSorting}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Default Sorting" />
       </SelectTrigger>

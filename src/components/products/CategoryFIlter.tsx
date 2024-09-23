@@ -9,14 +9,24 @@ import {
 } from "../ui/select";
 import { useAppDispatch } from "@/redux/features/hooks";
 import { getCategoryValue } from "@/redux/features/filter/filterSlice";
-const CategoryFilter = () => {
+
+type TCategoryFilterProps = {
+  selectedCategory: string;
+  setSelectedCategory: (value: string) => void;
+};
+const CategoryFilter = ({
+  selectedCategory,
+  setSelectedCategory,
+}: TCategoryFilterProps) => {
   const dispatch = useAppDispatch();
+
   const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value);
     dispatch(getCategoryValue(value));
   };
 
   return (
-    <Select onValueChange={handleCategoryChange}>
+    <Select value={selectedCategory} onValueChange={handleCategoryChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Select a Category" />
       </SelectTrigger>

@@ -10,13 +10,24 @@ import {
 } from "../ui/select";
 import { useAppDispatch } from "@/redux/features/hooks";
 
-const PriceFilter = () => {
+type TPriceFilterProps = {
+  selectedPrice: string;
+  setSelectedPrice: (value: string) => void;
+};
+
+const PriceFilter = ({
+  selectedPrice,
+  setSelectedPrice,
+}: TPriceFilterProps) => {
   const dispatch = useAppDispatch();
+
   const handleFilterPrice = (value: string) => {
+    setSelectedPrice(value);
     dispatch(getFilterPriceValue(value));
   };
+
   return (
-    <Select onValueChange={handleFilterPrice}>
+    <Select value={selectedPrice} onValueChange={handleFilterPrice}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Price Filter" />
       </SelectTrigger>

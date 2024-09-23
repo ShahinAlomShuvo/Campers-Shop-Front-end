@@ -29,7 +29,7 @@ const ProductDetail = () => {
   const quantity = useSelector((state: RootState) =>
     selectItemQuantity(state, product?._id)
   );
-  const isOutOfStock = quantity >= product?.quantity;
+  const isOutOfStock = quantity >= product?.quantity || product?.quantity === 0;
 
   return (
     <div>
