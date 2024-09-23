@@ -26,6 +26,7 @@ export const productApi = createApi({
           method: "GET",
         };
       },
+      providesTags: ["Products"],
     }),
     addProduct: builder.mutation({
       query: (data) => {

@@ -1,4 +1,3 @@
-// CartItem.tsx
 import { FaTrashAlt } from "react-icons/fa";
 import { useAppDispatch } from "@/redux/features/hooks";
 import {

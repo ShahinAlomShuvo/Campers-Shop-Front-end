@@ -1,5 +1,6 @@
 import { RootState } from "@/redux/store";
 import { createSlice } from "@reduxjs/toolkit";
+import { clear } from "console";
 import { act } from "react";
 
 type TProduct = {
@@ -62,6 +63,9 @@ const cartSlice = createSlice({
           : item
       );
     },
+    clearCart: (state) => {
+      state.products = [];
+    },
   },
 });
 
@@ -76,7 +80,7 @@ export const selectGrandTotalPrice = (state: RootState) => {
   }, 0);
 };
 
-export const { addToCart, removeFromCart, changeProductQUantity } =
+export const { addToCart, removeFromCart, changeProductQUantity, clearCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

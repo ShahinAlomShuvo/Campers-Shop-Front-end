@@ -1,15 +1,20 @@
-import { selectGrandTotalPrice } from "@/redux/features/cart/cartSlice";
-import { useAppSelector } from "@/redux/features/hooks";
+import { useUpdateProductMutation } from "@/redux/api/api";
+import {
+  clearCart,
+  selectGrandTotalPrice,
+} from "@/redux/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/features/hooks";
 import { RootState } from "@/redux/store";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Checkout: React.FC = () => {
   const cartItems = useAppSelector((state) => state.cart.products);
   const grandTotal = useSelector((state: RootState) =>
     selectGrandTotalPrice(state)
   );
+  const dispatch = useAppDispatch();
 
   // State for user information
   const [email, setEmail] = useState<string>("");
@@ -19,6 +24,29 @@ const Checkout: React.FC = () => {
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [zipCode, setZipCode] = useState<string>("");
+
+  const [updateProduct] = useUpdateProductMutation();
+  const navigate = useNavigate();
+
+  const handleCheckout = async () => {
+    try {
+      for (const item of cartItems) {
+        const updatedQuantity = item.quantity - item.selectedQuantity;
+
+        await updateProduct({
+          _id: item._id,
+          quantity: updatedQuantity,
+        });
+      }
+
+      // Clear the cart
+      dispatch(clearCart());
+      // After successful checkout, navigate to the success page
+      navigate("/success");
+    } catch (error) {
+      console.error("Error during checkout: ", error);
+    }
+  };
 
   return (
     <div className="container mx-auto py-8 border-t">
@@ -126,11 +154,12 @@ const Checkout: React.FC = () => {
             <label htmlFor="cod">Cash on Delivery</label>
           </div>
 
-          <Link to="/success">
-            <button className="w-full bg-orange-600 text-white py-3 rounded-lg font-bold hover:bg-orange-700">
-              Place Order
-            </button>
-          </Link>
+          <button
+            onClick={handleCheckout}
+            className="w-full bg-orange-600 text-white py-3 rounded-lg font-bold hover:bg-orange-700"
+          >
+            Place Order
+          </button>
         </div>
 
         {/* Cart Summary */}
