@@ -25,7 +25,7 @@ const Sorting = ({ selectedSorting, setSelectedSorting }: TSortingProps) => {
 
   return (
     <Select value={selectedSorting} onValueChange={handleSorting}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="lg:w-[180px]">
         <SelectValue placeholder="Default Sorting" />
       </SelectTrigger>
       <SelectContent>

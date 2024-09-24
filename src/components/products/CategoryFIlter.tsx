@@ -13,10 +13,12 @@ import { getCategoryValue } from "@/redux/features/filter/filterSlice";
 type TCategoryFilterProps = {
   selectedCategory: string;
   setSelectedCategory: (value: string) => void;
+  propClass?: string;
 };
 const CategoryFilter = ({
   selectedCategory,
   setSelectedCategory,
+  propClass,
 }: TCategoryFilterProps) => {
   const dispatch = useAppDispatch();
 
@@ -27,7 +29,7 @@ const CategoryFilter = ({
 
   return (
     <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className={`lg:w-[180px] ${propClass}`}>
         <SelectValue placeholder="Select a Category" />
       </SelectTrigger>
       <SelectContent>

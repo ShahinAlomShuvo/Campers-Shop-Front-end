@@ -28,7 +28,7 @@ const PriceFilter = ({
 
   return (
     <Select value={selectedPrice} onValueChange={handleFilterPrice}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="lg:w-[180px]">
         <SelectValue placeholder="Price Filter" />
       </SelectTrigger>
       <SelectContent>

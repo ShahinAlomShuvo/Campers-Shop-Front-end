@@ -33,44 +33,59 @@ const ProductFiltering = () => {
   };
 
   return (
-    <div className="flex space-x-4 items-center justify-between p-10 border rounded shadow-lg my-14">
+    <div className="flex flex-col md:flex-row flex-wrap space-y-4 lg:space-y-0 lg:space-x-4 items-center justify-between p-6 md:p-10 border rounded shadow-lg my-14">
       {/* Category Filter */}
-      <CategoryFilter
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
+      <div className="flex-grow order-1 lg:order-none w-full lg:w-auto">
+        <CategoryFilter
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+      </div>
 
       {/* Price Filter */}
-      <PriceFilter
-        selectedPrice={selectedPrice}
-        setSelectedPrice={setSelectedPrice}
-      />
+      <div className="flex-grow order-2 lg:order-none w-full lg:w-auto">
+        <PriceFilter
+          selectedPrice={selectedPrice}
+          setSelectedPrice={setSelectedPrice}
+        />
+      </div>
+
+      {/* Sorting */}
+      <div className="flex-grow order-3 lg:order-none w-full lg:w-auto">
+        <Sorting
+          selectedSorting={selectedSorting}
+          setSelectedSorting={setSelectedSorting}
+        />
+      </div>
 
       {/* Search Filter */}
-      <div>
-        <form onSubmit={handleSearch} className="flex space-x-4 items-center">
+      <div className="flex-grow order-4 lg:order-none w-full lg:w-auto">
+        <form
+          onSubmit={handleSearch}
+          className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center"
+        >
           <Input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             type="text"
             placeholder="Search products"
+            className="w-full lg:w-auto"
           />
-          <Button className="bg-[#c19d60]" type="submit">
+          <Button className="bg-[#c19d60] w-full md:w-auto" type="submit">
             Search
           </Button>
         </form>
       </div>
 
-      {/* Sorting */}
-      <Sorting
-        selectedSorting={selectedSorting}
-        setSelectedSorting={setSelectedSorting}
-      />
-
       {/* Clear Button */}
-      <Button onClick={clearFilters} className="bg-red-500 text-white">
-        Clear Filters
-      </Button>
+      <div className="flex-grow order-5 lg:order-none w-full lg:w-auto">
+        <Button
+          onClick={clearFilters}
+          className="bg-red-500 text-white w-full lg:w-auto"
+        >
+          Clear Filters
+        </Button>
+      </div>
     </div>
   );
 };
