@@ -33,7 +33,7 @@ const ProductFiltering = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row flex-wrap space-y-4 lg:space-y-0 lg:space-x-4 items-center justify-between p-6 md:p-10 border rounded shadow-lg my-14">
+    <div className="flex flex-col md:flex-row flex-wrap space-y-4 xl:space-y-0 lg:space-x-4 items-center justify-between p-6 md:p-10 border rounded shadow-lg my-14">
       {/* Category Filter */}
       <div className="flex-grow order-1 lg:order-none w-full lg:w-auto">
         <CategoryFilter
@@ -78,10 +78,10 @@ const ProductFiltering = () => {
       </div>
 
       {/* Clear Button */}
-      <div className="flex-grow order-5 lg:order-none w-full lg:w-auto">
+      <div className="flex-grow order-5 lg:order-none w-full xl:w-auto">
         <Button
           onClick={clearFilters}
-          className="bg-red-500 text-white w-full lg:w-auto"
+          className="bg-red-500 text-white w-full xl:w-auto"
         >
           Clear Filters
         </Button>

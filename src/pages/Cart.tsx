@@ -66,7 +66,7 @@ const Cart = () => {
               </div>
             </>
           ) : (
-            <div className="col-span-4 p-40 flex justify-center items-center bg-white shadow-xl border">
+            <div className="col-span-4 md:p-40 flex justify-center items-center bg-white shadow-xl border flex-wrap p-10">
               <p className="text-lg font-bold">No products in the cart.</p>
               <Link to="/products" className="text-blue-500 hover:underline">
                 Continue shopping

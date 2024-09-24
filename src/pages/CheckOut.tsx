@@ -62,12 +62,12 @@ const Checkout: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 border-t">
+    <div className="container mx-auto py-8 border-t px-3 xl:px-0">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* User Details Form */}
         <form
           onSubmit={handleCheckout}
-          className="col-span-2 bg-white shadow-md border rounded-lg p-6"
+          className="col-span-2 bg-white  shadow-md border rounded-lg p-6 order-2 lg:order-1"
         >
           <h2 className="text-xl font-semibold mb-6">Contact</h2>
           <div className="mb-4">
@@ -192,7 +192,7 @@ const Checkout: React.FC = () => {
         </form>
 
         {/* Cart Summary */}
-        <div className="bg-white shadow-md rounded-lg p-6 border space-y-5">
+        <div className="bg-white shadow-md rounded-lg p-6 border space-y-5 order-1 lg:order-2 ml-4 md:ml-0">
           <h2 className="text-lg font-semibold mb-4">Your Cart</h2>
           <ul>
             {cartItems.map((item) => (
