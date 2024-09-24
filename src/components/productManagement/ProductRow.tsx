@@ -56,7 +56,7 @@ const ProductRow = ({ product }: ProductRowProps) => {
       <td className="py-3 px-6 text-left">{product.name}</td>
       <td className="py-3 px-6 text-left">${product.price.toFixed(2)}</td>
       <td className="py-3 px-6 text-left capitalize">{product.category}</td>
-      <td className="py-3 px-6 text-center space-x-6">
+      <td className="py-3 px-6 text-center space-x-6 md:space-x-0 flex justify-evenly">
         <EditProduct product={product} />
         <button
           onClick={handleDeleteProduct}
