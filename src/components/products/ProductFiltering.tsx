@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import PriceFilter from "./PriceFilter";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -9,7 +9,8 @@ import {
   getSearchValue,
 } from "@/redux/features/filter/filterSlice";
 import CategoryFilter from "./CategoryFIlter";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const ProductFiltering = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -32,8 +33,14 @@ const ProductFiltering = () => {
     dispatch(clearAllFilters());
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <div className="flex flex-col md:flex-row flex-wrap space-y-4 xl:space-y-0 lg:space-x-4 items-center justify-between p-6 md:p-10 border rounded shadow-lg my-14">
+    <div
+      data-aos="zoom-in"
+      className="flex flex-col md:flex-row flex-wrap space-y-4 xl:space-y-0 lg:space-x-4 items-center justify-between p-6 md:p-10 border rounded shadow-lg my-14"
+    >
       {/* Category Filter */}
       <div className="flex-grow order-1 lg:order-none w-full lg:w-auto">
         <CategoryFilter

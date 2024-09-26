@@ -31,6 +31,7 @@ const Products = () => {
   const { data, error, isLoading } = useGetProductsQuery({ ...query });
 
   const products = data?.data || [];
+
   return (
     <>
       <PagesBanner currentPage="Products" />

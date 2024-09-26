@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "./button";
-
+import { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 type TProps = {
   _id: string;
   name: string;
@@ -13,8 +15,14 @@ type TProps = {
 };
 
 const ProductsCard = ({ _id, name, price, image }: TProps) => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <div className="card card-compact bg-base-100  shadow-xl">
+    <div
+      data-aos="fade-up"
+      className="card card-compact bg-base-100  shadow-xl"
+    >
       <figure>
         <img src={image} alt={name} />
       </figure>
