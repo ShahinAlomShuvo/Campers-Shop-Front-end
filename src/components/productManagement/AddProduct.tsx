@@ -11,7 +11,7 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAddProductMutation } from "@/redux/api/api";
 import Swal from "sweetalert2";
 
@@ -50,27 +50,38 @@ const AddProduct = () => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
-  const [addProduct, { isLoading }] = useAddProductMutation();
+  const [addProduct, { isLoading, isSuccess, isError }] =
+    useAddProductMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      Swal.fire("Congratulations!", "Product has been added!", "success");
+      setOpen(false);
+      setProduct({
+        name: "",
+        price: 0,
+        quantity: 0,
+        description: "",
+        category: "",
+        ratings: 0,
+        image: "",
+      });
+    }
+
+    if (isError) {
+      Swal.fire("Oops!", "Something went wrong!", "error");
+      setOpen(false);
+    }
+  }, [isSuccess, isError]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    addProduct(product);
-    // Reset the form values after save
-    setProduct({
-      name: "",
-      price: 0,
-      quantity: 0,
-      description: "",
-      category: "",
-      ratings: 0,
-      image: "",
-    });
-
-    setOpen(false);
-    Swal.fire({
-      title: "Congratulations!",
-      text: "Product has been added!",
-      icon: "success",
+    addProduct({
+      ...product,
+      price: Number(product.price),
+      quantity: Number(product.quantity),
+      ratings: Number(product.ratings),
     });
   };
 
@@ -205,7 +216,7 @@ const AddProduct = () => {
           </div>
           {/* Submit Button */}
           <Button type="submit" className="w-full">
-            Save changes
+            Add Product
           </Button>
         </form>
       </DialogContent>
