@@ -12,7 +12,7 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUpdateProductMutation } from "@/redux/api/api";
 import Swal from "sweetalert2";
 
@@ -48,17 +48,33 @@ const EditProduct = ({ product }: EditProductProps) => {
     setEditedProduct({ ...editedProduct, [e.target.name]: e.target.value });
   };
 
-  const [updateProduct, { isLoading }] = useUpdateProductMutation();
+  const [updateProduct, { isLoading, isSuccess, isError }] =
+    useUpdateProductMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      Swal.fire("Congratulations!", "Product has been updated!", "success");
+      setOpen(false);
+    }
+
+    if (isError) {
+      Swal.fire("Error!", "Something went wrong!", "error");
+      setOpen(false);
+    }
+  }, [isSuccess, isError]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    updateProduct(editedProduct);
+
+    const editedProductData = {
+      ...editedProduct,
+      price: Number(editedProduct.price),
+      quantity: Number(editedProduct.quantity),
+      ratings: Number(editedProduct.ratings),
+    };
+
+    updateProduct(editedProductData);
     setOpen(false);
-    Swal.fire({
-      title: "Congratulations!",
-      text: "Product has been updated!",
-      icon: "success",
-    });
   };
 
   return (
