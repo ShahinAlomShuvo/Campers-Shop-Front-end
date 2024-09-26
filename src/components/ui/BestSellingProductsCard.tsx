@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import CartSvg from "./CartSvg";
 import SearchSvg from "./SearchSvg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeartSvg from "./HeartSvg";
 import { useAppDispatch } from "@/redux/features/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import Swal from "sweetalert2";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 type TBestSellingProductsProps = {
   _id: string;
   name: string;
@@ -50,8 +51,14 @@ const BestSellingProductsCard = ({
     });
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <div className="relative rounded-lg overflow-hidden group ">
+    <div
+      data-aos="fade-up"
+      className="relative rounded-lg overflow-hidden group "
+    >
       <img src={image} alt={name} className="w-full rounded-lg" />
 
       {/* Icons will fade in and slide in from the right */}

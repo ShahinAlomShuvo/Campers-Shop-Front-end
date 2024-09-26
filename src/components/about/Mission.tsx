@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import Container from "../ui/Container";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Mission = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <Container>
       <div className="py-6">
@@ -22,6 +27,7 @@ const Mission = () => {
           </div>
           <div className="flex-1 overflow-hidden">
             <img
+              data-aos="fade-left"
               className="transform transition-transform duration-500 ease-in-out hover:scale-110"
               src="https://hicam-store-newdemo.myshopify.com/cdn/shop/files/a1-1.jpg?v=1719909157&width=998"
               alt=""
@@ -47,6 +53,7 @@ const Mission = () => {
           </div>
           <div className="flex-1 overflow-hidden">
             <img
+              data-aos="fade-right"
               className="transform transition-transform duration-500 ease-in-out hover:scale-110"
               src="https://hicam-store-newdemo.myshopify.com/cdn/shop/files/a1-2.jpg?v=1719909163&width=998"
               alt=""

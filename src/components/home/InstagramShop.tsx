@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { FaInstagram } from "react-icons/fa";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const InstagramShop = () => {
   const images = [
     "https://campic-store-demo.myshopify.com/cdn/shop/files/instagram1.jpg?v=17881531025014822236",
@@ -14,6 +16,9 @@ const InstagramShop = () => {
     "https://campic-store-demo.myshopify.com/cdn/shop/files/instagram10.jpg?v=1742950213355118353",
   ];
 
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   return (
     <section className="py-12">
       <div className="text-center mb-10">
@@ -27,6 +32,7 @@ const InstagramShop = () => {
             className="relative group overflow-hidden rounded-lg"
           >
             <img
+              data-aos="zoom-in"
               src={img}
               alt={`Instagram shop ${index}`}
               className="w-full h-full object-cover transform transition-transform duration-[2s] ease-in-out group-hover:scale-110"

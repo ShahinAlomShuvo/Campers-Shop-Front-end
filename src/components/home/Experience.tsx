@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-
+import { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Experience = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 space-y-10">
       <div className="flex items-center justify-center">
@@ -18,6 +23,7 @@ const Experience = () => {
       </div>
       <div className="w-full overflow-hidden">
         <img
+          data-aos="fade-left"
           className="rounded transform transition-transform duration-500 ease-in-out hover:scale-110"
           src="https://campic-store-demo.myshopify.com/cdn/shop/files/banner-v3-img.jpg?v=1690770374"
           alt="Travel Experience"

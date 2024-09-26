@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "./button";
-
+import { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 type TProps = {
   _id: string;
   name: string;
@@ -13,8 +15,11 @@ type TProps = {
 };
 
 const FeaturesCard = ({ _id, image }: TProps) => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <div className="relative group">
+    <div data-aos="fade-up" className="relative group">
       <img src={image} alt="product" className="w-full h-auto" />
 
       {/* Black overlay that appears on hover */}

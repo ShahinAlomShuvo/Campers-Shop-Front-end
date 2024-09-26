@@ -5,7 +5,9 @@ import {
   removeFromCart,
 } from "@/redux/features/cart/cartSlice";
 import Swal from "sweetalert2";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 type CartItemProps = {
   _id: string;
   name: string;
@@ -47,8 +49,11 @@ const CartItems = ({
     });
   };
 
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <tr className="border-b">
+    <tr data-aos="fade-up" className="border-b">
       {/* Product Column */}
       <td className="py-4 flex flex-col md:flex-row gap-2 items-center justify-start">
         <img

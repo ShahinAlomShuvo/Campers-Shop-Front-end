@@ -6,11 +6,13 @@ import { useGetProductsByIdQuery } from "@/redux/api/api";
 import { addToCart, selectItemQuantity } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch } from "@/redux/features/hooks";
 import { RootState } from "@/redux/store";
+import { useEffect } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const ProductDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetProductsByIdQuery(id);
@@ -31,6 +33,9 @@ const ProductDetail = () => {
   );
   const isOutOfStock = quantity >= product?.quantity || product?.quantity === 0;
 
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
   return (
     <div>
       <PagesBanner
@@ -45,6 +50,7 @@ const ProductDetail = () => {
             {/* Product Image */}
             <div>
               <img
+                data-aos="zoom-in"
                 src={product?.image}
                 alt={product?.name}
                 className="w-full rounded-lg shadow-md"
