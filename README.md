@@ -6,7 +6,7 @@
 
 ### Live URL
 
-[Campers Shop Live Site](#) _("https://campers-shop-sepia.vercel.app")_
+[Campers Shop Live Site](#) _(https://campers-shop-sepia.vercel.app)_
 
 ## Features
 
@@ -26,7 +26,7 @@ To set up the application locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/campers-shop.git
+   git clone https://github.com/ShahinAlomShuvo/Campers-Shop-Front-end.git
    ```
 2. Navigate to the project directory:
 
