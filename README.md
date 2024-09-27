@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+# Campers Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+**Campers Shop** is an e-commerce website dedicated to providing all necessary and fun items for camping enthusiasts. The design is user-friendly and visually appealing, taking inspiration from top camping e-commerce platforms.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Live URL
 
-## Expanding the ESLint configuration
+[Campers Shop Live Site](#) _("https://campers-shop-sepia.vercel.app")_
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Homepage**: Attractive hero section, featured products, categories, and testimonials.
+- **Products Page**: Search, filter, and sort through a wide range of camping products.
+- **Product Details**: Detailed product information with stock-based Add to Cart functionality.
+- **Cart**: Manage items, update quantities, view total pricing, and proceed to checkout.
+- **Checkout**: User information and payment options, including Cash on Delivery and Stripe.
+- **Product Management**: Admin features for creating, updating, and deleting products.
+- **About Us Page**: Contact information, mission statement, team members, and a map showing the store's location.
+- **Responsive Design**: Optimized for desktops, tablets, and smartphones.
+- **State Management**: Built using Redux for a scalable and consistent state across the application.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Installation & Setup
+
+To set up the application locally, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/campers-shop.git
+   ```
+2. Navigate to the project directory:
+
+```bash
+cd campers-shop
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+npm install
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+4. Start the development server:
+
+```bash
+npm run dev
+
 ```
