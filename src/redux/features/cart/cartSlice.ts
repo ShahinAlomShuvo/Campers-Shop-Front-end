@@ -1,7 +1,5 @@
 import { RootState } from "@/redux/store";
 import { createSlice } from "@reduxjs/toolkit";
-import { clear } from "console";
-import { act } from "react";
 
 type TProduct = {
   _id: string;

@@ -22,7 +22,7 @@ type ProductRowProps = {
 };
 
 const ProductRow = ({ product }: ProductRowProps) => {
-  const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
+  const [deleteProduct] = useDeleteProductMutation();
 
   const handleDeleteProduct = async () => {
     Swal.fire({

@@ -48,7 +48,7 @@ const EditProduct = ({ product }: EditProductProps) => {
     setEditedProduct({ ...editedProduct, [e.target.name]: e.target.value });
   };
 
-  const [updateProduct, { isLoading, isSuccess, isError }] =
+  const [updateProduct, { isSuccess, isError }] =
     useUpdateProductMutation();
 
   useEffect(() => {

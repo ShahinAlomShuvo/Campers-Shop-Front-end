@@ -50,8 +50,7 @@ const AddProduct = () => {
     setProduct({ ...product, [e.target.name]: e.target.value });
   };
 
-  const [addProduct, { isLoading, isSuccess, isError }] =
-    useAddProductMutation();
+  const [addProduct, { isSuccess, isError }] = useAddProductMutation();
 
   useEffect(() => {
     if (isSuccess) {
